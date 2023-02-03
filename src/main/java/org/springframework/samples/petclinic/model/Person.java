@@ -15,8 +15,14 @@
  */
 package org.springframework.samples.petclinic.model;
 
+import com.sun.tools.javac.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotEmpty;
 
 /**
@@ -51,4 +57,14 @@ public class Person extends BaseEntity {
 		this.lastName = lastName;
 	}
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "owner_id")
+    private List<Bill> bills = new ArrayList<>();
+    public List<Bill> getBills() {
+                return bills;
+    }
+    
+    public void setBills(List<Bill> bills) {
+    	this.bills=bills;
+    }
 }

@@ -46,6 +46,10 @@ import jakarta.validation.constraints.NotEmpty;
 @Table(name = "owners")
 public class Owner extends Person {
 
+	/**
+	 * 
+	 */
+
 	@Column(name = "address")
 	@NotEmpty
 	private String address;

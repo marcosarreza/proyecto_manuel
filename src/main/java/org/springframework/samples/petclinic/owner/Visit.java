@@ -22,6 +22,7 @@ import org.springframework.samples.petclinic.model.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -64,5 +65,16 @@ public class Visit extends BaseEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
+	@OnetoOne
+	@JoinColumn(name="visit id")
+	private Bill bill;
+	
+	public Bill getBill() {
+		return bill;
+	}
+	
+	public void setBill(Bill bill) {
+		this.bill=bill;
+	}
 }
